@@ -1,0 +1,2 @@
+export const ADD_INFO_ITEM='ADD_TODO_ITEM'
+export const DEL_INFO_ITEM='DEL_TODO_ITEM'
