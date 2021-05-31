@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 import {Form,Button,Row,Col} from 'react-bootstrap'
-// import {addInfo} from "../redux/actions"
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import {addInfoAction} from '../../../../redux/actions'
 
-const TodoForm = props =>{
+const TodoForm =() =>{
     const initalInfo = {
         id: null,
         description: '',
@@ -11,7 +11,7 @@ const TodoForm = props =>{
         content: ''
     }
     const [info, setInfo]=useState(initalInfo)
-    
+    const dispatch = useDispatch()
     const handleInputChange=(e)=>{
         const { name, value } = e.target
 		setInfo({ ...info, [name]: value })
@@ -19,7 +19,7 @@ const TodoForm = props =>{
     }
     const submitHandler=e=>{
         e.preventDefault()
-        props.addInfo(info)
+        dispatch(addInfoAction(info))
         setInfo(initalInfo)
     }
     return (

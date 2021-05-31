@@ -4,12 +4,12 @@ import {infoReducer} from './reducer';
 import thunk from 'redux-thunk'
 
 const middleware=[thunk]
-
-const infoApp = combineReducers({
+const initialState={ };
+const todoReducer = combineReducers({
     infos:infoReducer
   });
 
-const store = createStore(infoApp, composeWithDevTools(
+const store = createStore(todoReducer,initialState, composeWithDevTools(
     applyMiddleware(...middleware),
     // other store enhancers if any
   ));

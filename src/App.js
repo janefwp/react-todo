@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import HomeScreen from '../src/screens/HomeScreen';
-import AboutScreen from '../src/screens/AboutScreen'
-import Header from '../src/components/Header'
-import InfodetailScreen from '../src/screens/InfodetailScreen'
+import HomeScreen from '../src/screens/HomeScreens/HomeScreen';
+import AboutScreen from '../src/screens/AboutScreens/AboutScreen'
+import Header from '../src/components/Header/Header'
+import InfodetailScreen from '../src/screens/InfodetailScreens/InfodetailScreen'
 
 function App() {
   return (
