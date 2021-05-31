@@ -8,7 +8,8 @@ const TodoForm =() =>{
         id: null,
         description: '',
         category:'',
-        content: ''
+        content: '',
+        isChecked: false
     }
     const [info, setInfo]=useState(initalInfo)
     const dispatch = useDispatch()
