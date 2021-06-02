@@ -31,7 +31,7 @@ const TodoForm =() =>{
                             Discription
                         </Form.Label>
                         <Col sm={8}>
-                            <Form.Control type="text" name="description" onChange={handleInputChange}  />
+                            <Form.Control type="text" name="description" value={info.description} onChange={handleInputChange}  />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} >
@@ -42,6 +42,7 @@ const TodoForm =() =>{
                             <Form.Control as="select"
                                     required="required" 
                                     name="category"
+                                    value={info.category}
                                     onChange={handleInputChange}>
                             <option>Choose...</option>
                             <option>css</option>
@@ -55,7 +56,7 @@ const TodoForm =() =>{
                             content
                         </Form.Label>
                         <Col sm={8}>
-                            <Form.Control type="text" name="content" onChange={handleInputChange} />
+                            <Form.Control type="text" name="content" value={info.content} onChange={handleInputChange} />
                         </Col>
                     </Form.Group>
                     <Button type="submit">Submit</Button>
