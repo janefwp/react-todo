@@ -11,6 +11,7 @@ const InfoTable=()=> {
     const {infos, changeCheckedStatus, selectAll, delInfo, delSeleted}=useContext(InfosContext)
     // const allinfo = infos.infos
     const [allChecked, setAllChecked]=useState(false)
+    const [selectedChecked, setSelectedChecked]=useState(false)
     console.log(infos)
     // const dispatch = useDispatch()
     const deleteInfoHandler=(id)=>{
@@ -22,7 +23,7 @@ const InfoTable=()=> {
         var infoid=parseInt(event.target.value);
         changeCheckedStatus({isChecked:isChecked,id:infoid})
         // dispatch(changeCheckedstatusAction({isChecked:isChecked,id:infoid}))
-        setAllChecked(!allChecked)
+        setSelectedChecked(!selectedChecked)
     }
     const selectAllHandler=(event)=>{
         // dispatch(changeAllCheckedstatusAction(event.target.checked))
@@ -34,6 +35,8 @@ const InfoTable=()=> {
     const deleteSelectedInfoHandler=()=>{
         // dispatch(delSelectedInfoAction())
         delSeleted()
+        setAllChecked(false)
+        setSelectedChecked(false)
     }
 
     return (
@@ -45,7 +48,7 @@ const InfoTable=()=> {
         <Table>
             <thead>
                 <tr>
-                    <th><input type="checkbox" onChange={selectAllHandler}/></th>
+                    <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
                     <th>Description</th>
                     <th>Content</th>
                     <th>Operate</th>
