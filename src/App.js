@@ -1,13 +1,15 @@
 import React from 'react'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import HomeScreen from '../src/screens/HomeScreens/HomeScreen';
-import AboutScreen from '../src/screens/AboutScreens/AboutScreen'
-import Header from '../src/components/Header/Header'
-import InfodetailScreen from '../src/screens/InfodetailScreens/InfodetailScreen'
-
+import HomeScreen from './screens/homescreens/HomeScreen';
+import AboutScreen from './screens/aboutscreens/AboutScreen'
+import Header from './components/header/Header'
+import InfodetailScreen from './screens/infodetailscreens/InfodetailScreen'
+import {InfosProvider} from './context/InfosContext'
 function App() {
   return (
+  
+    <InfosProvider >
       <Router >
         <Header />
         <main className="py-3">
@@ -21,6 +23,8 @@ function App() {
         </main>
         {/* <Footer /> */}
       </Router>
+      </InfosProvider>
+
     );
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 
 import {Row,Col, } from 'react-bootstrap'
-import TodoForm from './components/TodoForm/TodoForm'
-import InfoTable from './components/InfoTable/InfoTable'
+import TodoForm from './components/todoform/TodoForm'
+import InfoTable from './components/infotable/InfoTable'
 
 function HomeScreen() {
 
