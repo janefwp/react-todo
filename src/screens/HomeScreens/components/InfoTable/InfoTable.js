@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react'
 import {Button,Table} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
+import './InfoTable.scss'
 
 const InfoTable=()=> {
 
@@ -59,7 +60,7 @@ const InfoTable=()=> {
             <tbody>
                 {infos && infos.map(item=>(
                     
-                        <tr key={item.id} >
+                        <tr key={item.id} className={item.isChecked ? 'selected': ''} >
                             <td>
                                 <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
                             </td>
