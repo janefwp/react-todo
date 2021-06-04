@@ -1,5 +1,5 @@
 import React,{useState, useContext} from 'react'
-import {Form,Button,Row,Col} from 'react-bootstrap'
+import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { InfosContext } from '../../../../context/InfosContext'
 // import {addInfoAction} from '../../../../redux/actions'
@@ -28,8 +28,11 @@ const TodoForm =() =>{
         setInfo(initalInfo)
     }
     return (
-        <div>
+            <Container>
+            <h4>Create New Task</h4>
+            <br />
             <Form onSubmit={submitHandler}>
+                
                     <Form.Group as={Row} >
                         <Form.Label column sm={4}>
                             Discription
@@ -65,7 +68,7 @@ const TodoForm =() =>{
                     </Form.Group>
                     <Button type="submit">Submit</Button>
             </Form>
-        </div>
+            </Container>
     )
 }
 

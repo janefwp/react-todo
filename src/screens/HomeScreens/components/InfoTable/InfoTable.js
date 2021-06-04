@@ -41,10 +41,12 @@ const InfoTable=()=> {
 
     return (
         <>
+        <h3>Todo List</h3>
+        <br />
         <div>
         <Button onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
         </div>
-        
+        <br />
         <Table>
             <thead>
                 <tr>
