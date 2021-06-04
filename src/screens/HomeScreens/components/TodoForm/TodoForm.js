@@ -1,7 +1,8 @@
-import React,{useState} from 'react'
-import {Form,Button,Row,Col} from 'react-bootstrap'
+import React,{useState, useContext} from 'react'
+import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import {addInfoAction} from '../../../../redux/actions'
+import { InfosContext } from '../../../../context/InfosContext'
+// import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{
     const initalInfo = {
@@ -12,7 +13,8 @@ const TodoForm =() =>{
         isChecked: false
     }
     const [info, setInfo]=useState(initalInfo)
-    const dispatch = useDispatch()
+    const {addInfos}=useContext(InfosContext)
+    // const dispatch = useDispatch()
     const handleInputChange=(e)=>{
         const { name, value } = e.target
 		setInfo({ ...info, [name]: value })
@@ -20,18 +22,23 @@ const TodoForm =() =>{
     }
     const submitHandler=e=>{
         e.preventDefault()
-        dispatch(addInfoAction(info))
+        addInfos(info)
+        // dispatch(addInfoAction(info))
+        // setInfos((prepInfos)=>{return [...prepInfos,info]})
         setInfo(initalInfo)
     }
     return (
-        <div>
+            <Container>
+            <h4>Create New Task</h4>
+            <br />
             <Form onSubmit={submitHandler}>
+                
                     <Form.Group as={Row} >
                         <Form.Label column sm={4}>
                             Discription
                         </Form.Label>
                         <Col sm={8}>
-                            <Form.Control type="text" name="description" onChange={handleInputChange}  />
+                            <Form.Control type="text" name="description" value={info.description} required={true} onChange={handleInputChange}  />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} >
@@ -40,27 +47,28 @@ const TodoForm =() =>{
                         </Form.Label>
                         <Col sm={8}>
                             <Form.Control as="select"
-                                    required="required" 
+                                    required={true} 
                                     name="category"
+                                    value={info.category}
                                     onChange={handleInputChange}>
-                            <option>Choose...</option>
-                            <option>css</option>
-                            <option>html</option>
+                            <option value="">Choose...</option>
+                            <option value="css">css</option>
+                            <option value="html">html</option>
                             </Form.Control>
                         </Col>                    
                     </Form.Group>
 
                     <Form.Group as={Row} >
                         <Form.Label column sm={4}>
-                            content
+                            Content
                         </Form.Label>
                         <Col sm={8}>
-                            <Form.Control type="text" name="content" onChange={handleInputChange} />
+                            <Form.Control type="text" name="content" value={info.content} required={true} onChange={handleInputChange} />
                         </Col>
                     </Form.Group>
                     <Button type="submit">Submit</Button>
             </Form>
-        </div>
+            </Container>
     )
 }
 

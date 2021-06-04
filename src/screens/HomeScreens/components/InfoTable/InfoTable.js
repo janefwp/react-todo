@@ -1,52 +1,63 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {Button,Table} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
+import { InfosContext } from '../../../../context/InfosContext'
 
 const InfoTable=()=> {
 
-    const infos= useSelector(state=>state.infos)
-    const allinfo = infos.infos
+    // const infos= useSelector(state=>state.infos)
+    const {infos, changeCheckedStatus, selectAll, delInfo, delSeleted}=useContext(InfosContext)
+    // const allinfo = infos.infos
     const [allChecked, setAllChecked]=useState(false)
+    const [selectedChecked, setSelectedChecked]=useState(false)
     console.log(infos)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const deleteInfoHandler=(id)=>{
-        dispatch(delInfoAction(id))
+        // dispatch(delInfoAction(id))
+        delInfo(id)
     }
     const checkedItemHandler=(event)=>{
         var isChecked=event.target.checked;   
         var infoid=parseInt(event.target.value);
-        dispatch(changeCheckedstatusAction({isChecked:isChecked,id:infoid}))
-        setAllChecked(!allChecked)
+        changeCheckedStatus({isChecked:isChecked,id:infoid})
+        // dispatch(changeCheckedstatusAction({isChecked:isChecked,id:infoid}))
+        setSelectedChecked(!selectedChecked)
     }
     const selectAllHandler=(event)=>{
-        dispatch(changeAllCheckedstatusAction(event.target.checked))
+        // dispatch(changeAllCheckedstatusAction(event.target.checked))
         // allinfo.map(item=>item.isChecked=event.target.checked)
+        selectAll(event.target.checked)
         setAllChecked(!allChecked)
     }
     
     const deleteSelectedInfoHandler=()=>{
-        dispatch(delSelectedInfoAction())
+        // dispatch(delSelectedInfoAction())
+        delSeleted()
+        setAllChecked(false)
+        setSelectedChecked(false)
     }
 
     return (
         <>
+        <h3>Todo List</h3>
+        <br />
         <div>
         <Button onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
         </div>
-        
+        <br />
         <Table>
             <thead>
                 <tr>
-                    <th><input type="checkbox" onChange={selectAllHandler}/></th>
+                    <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
                     <th>Description</th>
                     <th>Content</th>
                     <th>Operate</th>
                 </tr>
             </thead>
             <tbody>
-                {allinfo && allinfo.map(item=>(
+                {infos && infos.map(item=>(
                     
                         <tr key={item.id} >
                             <td>

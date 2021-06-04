@@ -1,17 +1,14 @@
 import React from 'react'
-import {Nav, Navbar} from 'react-bootstrap'
-
-
-
+import {Container, Nav, Navbar} from 'react-bootstrap'
 
 function Header() {
 
     return (
-        <header>
-            <Navbar bg="light" expand="lg">
-                
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+        <>
+            <Navbar collapseOnSelect expand='sm' bg='dark' variant='dark'>
+                <Container>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="/todo">Todo</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
@@ -19,8 +16,9 @@ function Header() {
                     </Nav>
 
                 </Navbar.Collapse>
+                </Container>
             </Navbar>
-        </header>
+        </>
     )
 }
 

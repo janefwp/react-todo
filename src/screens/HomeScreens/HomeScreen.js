@@ -1,15 +1,15 @@
 import React from 'react'
 
-import {Row,Col, } from 'react-bootstrap'
-import TodoForm from './components/TodoForm/TodoForm'
-import InfoTable from './components/InfoTable/InfoTable'
+import {Row,Col, Container} from 'react-bootstrap'
+import TodoForm from './components/todoform/TodoForm'
+import InfoTable from './components/infotable/InfoTable'
 
 function HomeScreen() {
 
 
     return (
         <Row>
-            <Col md={4}>
+            <Col md={4} className='bg-light'>
                 <TodoForm />
             </Col>
             <Col md ={8}>
