@@ -34,18 +34,18 @@ const TodoForm =() =>{
             <Form onSubmit={submitHandler}>
                 
                     <Form.Group as={Row} >
-                        <Form.Label column sm={4}>
+                        <Form.Label column sm={3}>
                             Discription
                         </Form.Label>
-                        <Col sm={8}>
+                        <Col sm={9}>
                             <Form.Control type="text" name="description" value={info.description} required={true} onChange={handleInputChange}  />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} >
-                        <Form.Label column sm={4}>
+                        <Form.Label column sm={3}>
                             Category
                         </Form.Label>
-                        <Col sm={8}>
+                        <Col sm={9}>
                             <Form.Control as="select"
                                     required={true} 
                                     name="category"
@@ -59,14 +59,18 @@ const TodoForm =() =>{
                     </Form.Group>
 
                     <Form.Group as={Row} >
-                        <Form.Label column sm={4}>
+                        <Form.Label column sm={3}>
                             Content
                         </Form.Label>
-                        <Col sm={8}>
-                            <Form.Control type="text" name="content" value={info.content} required={true} onChange={handleInputChange} />
+                        <Col sm={9}>
+                            <Form.Control as="textarea"  rows={3} name="content" value={info.content} required={true} onChange={handleInputChange} />
                         </Col>
                     </Form.Group>
-                    <Button type="submit">Submit</Button>
+                    <Form.Group as={Row}>
+                        <Col sm={{ span: 9, offset: 3 }}>
+                            <Button type="submit">Sign in</Button>
+                        </Col>
+                    </Form.Group>
             </Form>
             </Container>
     )
