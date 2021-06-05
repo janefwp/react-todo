@@ -68,7 +68,7 @@ const TodoForm =() =>{
                     </Form.Group>
                     <Form.Group as={Row}>
                         <Col sm={{ span: 9, offset: 3 }}>
-                            <Button type="submit">Sign in</Button>
+                            <Button type="submit">Submit</Button>
                         </Col>
                     </Form.Group>
             </Form>
