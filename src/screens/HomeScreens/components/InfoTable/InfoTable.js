@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Button,Table} from 'react-bootstrap'
+import {Button,Table, Container} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
@@ -41,11 +41,11 @@ const InfoTable=()=> {
     }
 
     return (
-        <>
+        <Container>
         <h3>Todo List</h3>
         <br />
         <div>
-        <Button onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
+        <Button variant='secondary' onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
         </div>
         <br />
         <Table>
@@ -74,7 +74,7 @@ const InfoTable=()=> {
                 ))}
             </tbody>
         </Table>
-        </>
+        </Container>
     )
 }
 
