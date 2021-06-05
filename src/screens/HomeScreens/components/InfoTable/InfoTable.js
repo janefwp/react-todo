@@ -48,7 +48,7 @@ const InfoTable=()=> {
         <Button variant='secondary' onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
         </div>
         <br />
-        <Table>
+        <Table className="table table-hover">
             <thead>
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
@@ -59,7 +59,6 @@ const InfoTable=()=> {
             </thead>
             <tbody>
                 {infos && infos.map(item=>(
-                    
                         <tr key={item.id} className={item.isChecked ? 'selected': ''} >
                             <td>
                                 <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
