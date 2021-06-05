@@ -68,7 +68,7 @@ const InfoTable=()=> {
                             <td>{item.description}</td>
                             </LinkContainer>
                             <td>{item.category}</td>
-                           <td><button onClick={() => deleteInfoHandler(item.id)}>Delete</button></td>
+                           <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
                         </tr>
                 
                 ))}
