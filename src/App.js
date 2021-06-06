@@ -16,7 +16,7 @@ function App() {
       <Router >
         <Header />
         <main className="py-3">
-          <Container>
+          <Container fluid>
           <Route path='/' component={HomeScreen} exact />
             <Route path='/todo' component={HomeScreen} exact />
             <Route path='/about' component={AboutScreen} exact />

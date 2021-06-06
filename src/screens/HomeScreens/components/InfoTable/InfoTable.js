@@ -1,9 +1,10 @@
 import React, {useState, useContext} from 'react'
-import {Button,Table} from 'react-bootstrap'
+import {Button,Table, Container} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
+import './InfoTable.scss'
 
 const InfoTable=()=> {
 
@@ -40,14 +41,14 @@ const InfoTable=()=> {
     }
 
     return (
-        <>
+        <Container>
         <h3>Todo List</h3>
         <br />
         <div>
-        <Button onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
+        <Button variant='secondary' onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
         </div>
         <br />
-        <Table>
+        <Table className="table table-hover">
             <thead>
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
@@ -58,8 +59,7 @@ const InfoTable=()=> {
             </thead>
             <tbody>
                 {infos && infos.map(item=>(
-                    
-                        <tr key={item.id} >
+                        <tr key={item.id} className={item.isChecked ? 'selected': ''} >
                             <td>
                                 <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
                             </td>
@@ -67,13 +67,13 @@ const InfoTable=()=> {
                             <td>{item.description}</td>
                             </LinkContainer>
                             <td>{item.category}</td>
-                           <td><button onClick={() => deleteInfoHandler(item.id)}>Delete</button></td>
+                           <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
                         </tr>
                 
                 ))}
             </tbody>
         </Table>
-        </>
+        </Container>
     )
 }
 

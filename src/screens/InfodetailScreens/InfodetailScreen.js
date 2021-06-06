@@ -1,6 +1,7 @@
 import React,{useContext} from 'react'
 import { useSelector } from 'react-redux'
 import { InfosContext } from '../../context/InfosContext'
+import { Container } from 'react-bootstrap'
 
 function InfodetailScreen(props) {
     const id = parseInt((props.match.params.id),10)
@@ -14,12 +15,17 @@ function InfodetailScreen(props) {
         props.history.push(`/`)
     }
     return (
-        <div>        
-         <p>Description:{info.description}</p>
-         <p>Category:{info.category}</p>
-         <p>Content:{info.content}</p>
+        <Container>
+            <h4>Task Detail</h4> 
+            <br /> 
+            <h5>Description</h5>      
+            <p>{info.description}</p>
+            <h5>Category</h5>
+            <p>{info.category}</p>
+            <h5>Content</h5>
+            <p>{info.content}</p>
          <button onClick={clickHandler}>Back</button>
-        </div>
+        </Container>
     )
 }
 export default InfodetailScreen

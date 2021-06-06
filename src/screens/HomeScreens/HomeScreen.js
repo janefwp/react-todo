@@ -6,7 +6,6 @@ import InfoTable from './components/infotable/InfoTable'
 
 function HomeScreen() {
 
-
     return (
         <Row>
             <Col md={4} className='bg-light'>
