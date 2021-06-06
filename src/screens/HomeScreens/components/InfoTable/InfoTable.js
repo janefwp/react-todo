@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {Button,Table, Container} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 // import { useDispatch, useSelector } from 'react-redux'
@@ -13,24 +13,33 @@ const InfoTable=()=> {
     // const allinfo = infos.infos
     const [allChecked, setAllChecked]=useState(false)
     const [selectedChecked, setSelectedChecked]=useState(false)
+    const [checkNum, setCheckNum]= useState(0)
     console.log(infos)
+    console.log(checkNum)
     // const dispatch = useDispatch()
     const deleteInfoHandler=(id)=>{
         // dispatch(delInfoAction(id))
         delInfo(id)
+        setCheckNum(pre=>pre-1)
+        console.log(checkNum)
     }
     const checkedItemHandler=(event)=>{
-        var isChecked=event.target.checked;   
+        var isChecked=event.target.checked;  
+        isChecked ? setCheckNum(pre=>pre+1) : setCheckNum(pre=>pre-1) 
         var infoid=parseInt(event.target.value);
         changeCheckedStatus({isChecked:isChecked,id:infoid})
         // dispatch(changeCheckedstatusAction({isChecked:isChecked,id:infoid}))
         setSelectedChecked(!selectedChecked)
+
     }
     const selectAllHandler=(event)=>{
         // dispatch(changeAllCheckedstatusAction(event.target.checked))
         // allinfo.map(item=>item.isChecked=event.target.checked)
+        var isChecked=event.target.checked
+        isChecked ? setCheckNum(infos.length) : setCheckNum(0)
         selectAll(event.target.checked)
         setAllChecked(!allChecked)
+        
     }
     
     const deleteSelectedInfoHandler=()=>{
@@ -38,17 +47,28 @@ const InfoTable=()=> {
         delSeleted()
         setAllChecked(false)
         setSelectedChecked(false)
+        setCheckNum(0)
+        console.log(checkNum)
     }
+    useEffect(() => {
+        if(checkNum===infos.length){
+            setAllChecked(true)
+        }
+        else {
+            setAllChecked(false)
+        }
+    }, [checkNum])
 
     return (
         <Container>
         <h3>Todo List</h3>
         <br />
         <div>
-        <Button variant='secondary' onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
+        <Button variant='secondary' disabled={(checkNum===0)? true : false} onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
         </div>
         <br />
-        <Table className="table table-hover">
+        {(infos.length!=0) && 
+            <Table className="table table-hover">
             <thead>
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
@@ -58,7 +78,7 @@ const InfoTable=()=> {
                 </tr>
             </thead>
             <tbody>
-                {infos && infos.map(item=>(
+                {infos.map(item=>(
                         <tr key={item.id} className={item.isChecked ? 'selected': ''} >
                             <td>
                                 <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
@@ -72,7 +92,8 @@ const InfoTable=()=> {
                 
                 ))}
             </tbody>
-        </Table>
+            </Table>
+            }
         </Container>
     )
 }
