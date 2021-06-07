@@ -4,7 +4,9 @@ import { LinkContainer } from 'react-router-bootstrap'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
+import { useToasts } from 'react-toast-notifications';
 import './InfoTable.scss'
+
 
 const InfoTable=()=> {
 
@@ -14,6 +16,7 @@ const InfoTable=()=> {
     const [allChecked, setAllChecked]=useState(false)
     const [selectedChecked, setSelectedChecked]=useState(false)
     const [checkNum, setCheckNum]= useState(0)
+    const { addToast } = useToasts();
     console.log(infos)
     console.log(checkNum)
     // const dispatch = useDispatch()
@@ -22,6 +25,7 @@ const InfoTable=()=> {
         delInfo(id)
         setCheckNum(pre=>pre-1)
         console.log(checkNum)
+        addToast('Successfully deleted one todo task', { appearance: 'success' })
     }
     const checkedItemHandler=(event)=>{
         var isChecked=event.target.checked;  
@@ -49,6 +53,7 @@ const InfoTable=()=> {
         setSelectedChecked(false)
         setCheckNum(0)
         console.log(checkNum)
+        addToast('Successfully deleted selected todo task', { appearance: 'success' })
     }
     useEffect(() => {
         if(checkNum===infos.length){

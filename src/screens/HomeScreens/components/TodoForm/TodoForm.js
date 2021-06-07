@@ -2,6 +2,7 @@ import React,{useState, useContext} from 'react'
 import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { InfosContext } from '../../../../context/InfosContext'
+import { useToasts } from 'react-toast-notifications'
 // import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{
@@ -12,6 +13,7 @@ const TodoForm =() =>{
         content: '',
         isChecked: false
     }
+    const { addToast } = useToasts();
     const [info, setInfo]=useState(initalInfo)
     const {addInfos}=useContext(InfosContext)
     // const dispatch = useDispatch()
@@ -26,6 +28,7 @@ const TodoForm =() =>{
         // dispatch(addInfoAction(info))
         // setInfos((prepInfos)=>{return [...prepInfos,info]})
         setInfo(initalInfo)
+        addToast('Successfully add one todo task', { appearance: 'success' })
     }
     return (
             <Container>

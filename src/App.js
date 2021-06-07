@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { ToastProvider } from 'react-toast-notifications';
 import HomeScreen from './screens/homescreens/HomeScreen';
 import AboutScreen from './screens/aboutscreens/AboutScreen'
 import Header from './components/header/Header'
@@ -11,7 +12,7 @@ import './App.scss'
 
 function App() {
   return (
-  
+    <ToastProvider>
     <InfosProvider >
       <Router >
         <Header />
@@ -27,6 +28,7 @@ function App() {
         <Footer />
       </Router>
       </InfosProvider>
+      </ToastProvider>
 
     );
 }
