@@ -3,6 +3,8 @@ import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { InfosContext } from '../../../../context/InfosContext'
 import { useToasts } from 'react-toast-notifications'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{
@@ -11,20 +13,26 @@ const TodoForm =() =>{
         description: '',
         category:'',
         content: '',
+        deadline:new Date(),
         isChecked: false
     }
     const { addToast } = useToasts();
     const [info, setInfo]=useState(initalInfo)
     const {addInfos}=useContext(InfosContext)
+    const [endDate, setEndDate] = useState(new Date());
+    // const [startDate, setStartDate] = useState(new Date());
     // const dispatch = useDispatch()
     const handleInputChange=(e)=>{
         const { name, value } = e.target
 		setInfo({ ...info, [name]: value })
+        // setInfo({...info,['deadline']:endDate})
         
     }
+
     const submitHandler=e=>{
         e.preventDefault()
         addInfos(info)
+        console.log(info)
         // dispatch(addInfoAction(info))
         // setInfos((prepInfos)=>{return [...prepInfos,info]})
         setInfo(initalInfo)
@@ -67,6 +75,15 @@ const TodoForm =() =>{
                         </Form.Label>
                         <Col sm={9}>
                             <Form.Control as="textarea"  rows={3} name="content" value={info.content} required={true} onChange={handleInputChange} />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} >
+                        <Form.Label column sm={3}>
+                            Deadline
+                        </Form.Label>
+                        <Col sm={9}>
+                            <DatePicker selected={endDate} onChange={(date)=>setInfo({...info,['deadline']:date})} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row}>

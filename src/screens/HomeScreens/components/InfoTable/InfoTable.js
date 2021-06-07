@@ -6,9 +6,10 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { InfosContext } from '../../../../context/InfosContext'
 import { useToasts } from 'react-toast-notifications';
 import './InfoTable.scss'
+import { Link } from 'react-router-dom';
 
 
-const InfoTable=()=> {
+function InfoTable(props){
 
     // const infos= useSelector(state=>state.infos)
     const {infos, changeCheckedStatus, selectAll, delInfo, delSeleted}=useContext(InfosContext)
@@ -16,6 +17,7 @@ const InfoTable=()=> {
     const [allChecked, setAllChecked]=useState(false)
     const [selectedChecked, setSelectedChecked]=useState(false)
     const [checkNum, setCheckNum]= useState(0)
+    const [sortType, setSortType]=useState(0)
     const { addToast } = useToasts();
     console.log(infos)
     console.log(checkNum)
@@ -55,13 +57,34 @@ const InfoTable=()=> {
         console.log(checkNum)
         addToast('Successfully deleted selected todo task', { appearance: 'success' })
     }
-    useEffect(() => {
-        if(checkNum===infos.length){
-            setAllChecked(true)
+    const sortHandler=()=>{
+        if(sortType===0)
+        {
+            infos.sort((a,b)=>{return a.deadline-b.deadline})
+            setSortType(1)
         }
         else {
+            infos.sort((a,b)=>{return b.deadline-a.deadline})
+            setSortType(0)
+        }
+        
+        
+    }
+
+    useEffect(() => {
+        if(checkNum ===0){
             setAllChecked(false)
         }
+        else {
+            if(checkNum===infos.length){
+                setAllChecked(true)
+            }
+            else {
+                setAllChecked(false)
+            }
+        }
+
+        
     }, [checkNum])
 
     return (
@@ -73,28 +96,36 @@ const InfoTable=()=> {
         </div>
         <br />
         {(infos.length!=0) && 
-            <Table className="table table-hover">
+            <Table className="table table-hover" >
             <thead>
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
                     <th>Description</th>
-                    <th>Content</th>
+                    <th>Category</th>
+                    <th>
+                        <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
+                            <strong>Deadline</strong>
+                        </button>
+                    </th>                 
                     <th>Operate</th>
                 </tr>
             </thead>
             <tbody>
-                {infos.map(item=>(
-                        <tr key={item.id} className={item.isChecked ? 'selected': ''} >
+                {infos.map(item=>( 
+                       
+                        <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
                             <td>
                                 <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
                             </td>
-                            <LinkContainer to={`/todo/${item.id}`}>
+                            <LinkContainer to={`/todo/${item.id}`}>   
                             <td>{item.description}</td>
-                            </LinkContainer>
+                            </LinkContainer>  
                             <td>{item.category}</td>
+                            
+                            <td>{item.deadline.toDateString()}</td>
                            <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
                         </tr>
-                
+                          
                 ))}
             </tbody>
             </Table>
