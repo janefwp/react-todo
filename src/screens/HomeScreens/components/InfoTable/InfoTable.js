@@ -7,6 +7,7 @@ import { InfosContext } from '../../../../context/InfosContext'
 import { useToasts } from 'react-toast-notifications';
 import './InfoTable.scss'
 import { Link } from 'react-router-dom';
+import InfodetailScreen from '../../../infodetailscreens/InfodetailScreen';
 
 
 function InfoTable(props){
@@ -18,6 +19,8 @@ function InfoTable(props){
     const [selectedChecked, setSelectedChecked]=useState(false)
     const [checkNum, setCheckNum]= useState(0)
     const [sortType, setSortType]=useState(0)
+    const [allinfos,setAllinfos]=useState(infos)
+
     const { addToast } = useToasts();
     console.log(infos)
     console.log(checkNum)
@@ -70,8 +73,12 @@ function InfoTable(props){
         
         
     }
+    const filterHandler=(e)=>{
+        setAllinfos(infos.filter(item=>item.category===e.target.value))
+    }
 
     useEffect(() => {
+        setAllinfos(infos)
         if(checkNum ===0){
             setAllChecked(false)
         }
@@ -85,7 +92,7 @@ function InfoTable(props){
         }
 
         
-    }, [checkNum])
+    }, [checkNum, infos])
 
     return (
         <Container>
@@ -101,7 +108,13 @@ function InfoTable(props){
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
                     <th>Description</th>
-                    <th>Category</th>
+                    <th>
+                        <select onChange={filterHandler} style={{border: 'none', background:'none'}}>
+                        <option value="">Category</option>
+                            <option value="css">css</option>
+                            <option value="html">html</option>
+                        </select>
+                    </th>
                     <th>
                         <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
                             <strong>Deadline</strong>
@@ -111,7 +124,7 @@ function InfoTable(props){
                 </tr>
             </thead>
             <tbody>
-                {infos.map(item=>( 
+                {allinfos.map(item=>( 
                        
                         <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
                             <td>
