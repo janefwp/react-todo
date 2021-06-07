@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {Button,Table, Container} from 'react-bootstrap'
+import {Button,Table, Container,Row, Col} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
@@ -102,25 +102,31 @@ function InfoTable(props){
 
     return (
         <Container>
-        <h3>Todo List</h3>
-        <br />
-        <div>
-        <Button variant='secondary' disabled={(checkNum===0)? true : false} onClick={deleteSelectedInfoHandler}>Delete seleted</Button>
-        </div>
-        <br />
-        {(infos.length!=0) && 
+            <h3>Todo List</h3>
+            <br />
+            {(infos.length!=0) && 
+            <div>
+            <Row>
+                <Col md={4}>
+                    <Button variant='secondary' disabled={(checkNum===0)? true : false} onClick={deleteSelectedInfoHandler}>Delete seleted</Button> 
+                </Col>
+                <Col md={{ span: 4, offset: 4 }}>
+                    <label >Filter by category: &nbsp;</label>
+                    <select name="category" onChange={filterHandler}> 
+                        <option value="">All</option>
+                        <option value="html">html</option>
+                        <option value="css">css</option>
+                    </select>
+                </Col>
+            </Row>
+            <br />
+            
             <Table className="table table-hover" >
             <thead>
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
                     <th>Description</th>
-                    <th>
-                        <select onChange={filterHandler} style={{border: 'none', background:'none'}}>
-                            <option value="">Category</option>
-                            <option value="css">css</option>
-                            <option value="html">html</option>
-                        </select>
-                    </th>
+                    <th>Category</th>
                     <th>
                         <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
                             <strong>Deadline</strong>
@@ -130,8 +136,7 @@ function InfoTable(props){
                 </tr>
             </thead>
             <tbody>
-                {allinfos.map(item=>( 
-                       
+                {allinfos.map(item=>(        
                         <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
                             <td>
                                 <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
@@ -143,11 +148,11 @@ function InfoTable(props){
                             
                             <td>{item.deadline.toDateString()}</td>
                            <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
-                        </tr>
-                          
+                        </tr>                          
                 ))}
             </tbody>
             </Table>
+            </div>
             }
         </Container>
     )
