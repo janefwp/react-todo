@@ -74,7 +74,13 @@ function InfoTable(props){
         
     }
     const filterHandler=(e)=>{
-        setAllinfos(infos.filter(item=>item.category===e.target.value))
+        if(e.target.value === ""){
+            setAllinfos(infos)
+        }
+        else {
+            setAllinfos(infos.filter(item=>item.category===e.target.value))
+        }
+        
     }
 
     useEffect(() => {
@@ -110,7 +116,7 @@ function InfoTable(props){
                     <th>Description</th>
                     <th>
                         <select onChange={filterHandler} style={{border: 'none', background:'none'}}>
-                        <option value="">Category</option>
+                            <option value="">Category</option>
                             <option value="css">css</option>
                             <option value="html">html</option>
                         </select>
