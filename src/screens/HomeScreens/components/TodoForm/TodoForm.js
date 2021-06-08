@@ -5,6 +5,9 @@ import { InfosContext } from '../../../../context/InfosContext'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
+import TodoInput from './components/TodoInput'
+import TodoSelect from './components/TodoSelect';
+import Tododatepicker from './components/Tododatepicker';
 // import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{
@@ -22,6 +25,7 @@ const TodoForm =() =>{
     // const [startDate, setStartDate] = useState(new Date());
     // const dispatch = useDispatch()
     const handleInputChange=(e)=>{
+        console.log(e)
         const { name, value } = e.target
 		setInfo({ ...info, [name]: value })
         // setInfo({...info,['deadline']:endDate})
@@ -43,8 +47,16 @@ const TodoForm =() =>{
             <h4>Create New Task</h4>
             <br />
             <Form onSubmit={submitHandler}>
-                
-                    <Form.Group as={Row} >
+                    <TodoInput label="Description" as="input" name="description" value={info.description} required={true} onChange={handleInputChange}/>
+                    <TodoSelect label="Category" as="select" name="category" value={info.category} required={true} onChange={handleInputChange} />
+                    <TodoInput label="Content" as="textarea" name="content" value={info.content} required={true} onChange={handleInputChange}/>
+                    <Tododatepicker label="Deadline" as="DatePicker" name="dealine" selected={endDate} onChange={(date)=>setInfo({...info,['deadline']:date})}/>
+                    <Form.Group as={Row}>
+                        <Col sm={{ span: 8, offset: 9 }}>
+                            <Button type="submit">Submit</Button>
+                        </Col>
+                    </Form.Group>
+                    {/* <Form.Group as={Row} >
                         <Form.Label column sm={3}>
                             Discription
                         </Form.Label>
@@ -90,7 +102,7 @@ const TodoForm =() =>{
                         <Col sm={{ span: 9, offset: 3 }}>
                             <Button type="submit">Submit</Button>
                         </Col>
-                    </Form.Group>
+                    </Form.Group> */}
             </Form>
            
             </Container>
