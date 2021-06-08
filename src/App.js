@@ -8,6 +8,7 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import InfodetailScreen from './screens/infodetailscreens/InfodetailScreen'
 import {InfosProvider} from './context/InfosContext'
+import { Toaster } from 'react-hot-toast';
 import './App.scss'
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
             <Route path='/about' component={AboutScreen} exact />
             <Route path='/todo/:id' component={InfodetailScreen} exact />
           </Container>
-          
+          <Toaster />
         </main>
         <Footer />
       </Router>

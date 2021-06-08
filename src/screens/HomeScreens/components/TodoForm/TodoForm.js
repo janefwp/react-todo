@@ -2,9 +2,9 @@ import React,{useState, useContext} from 'react'
 import {Form,Button,Row,Col, Container} from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { InfosContext } from '../../../../context/InfosContext'
-import { useToasts } from 'react-toast-notifications'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from 'react-hot-toast';
 // import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{
@@ -16,7 +16,6 @@ const TodoForm =() =>{
         deadline:new Date(),
         isChecked: false
     }
-    const { addToast } = useToasts();
     const [info, setInfo]=useState(initalInfo)
     const {addInfos}=useContext(InfosContext)
     const [endDate, setEndDate] = useState(new Date());
@@ -28,7 +27,7 @@ const TodoForm =() =>{
         // setInfo({...info,['deadline']:endDate})
         
     }
-
+    const notify = () => toast('Successfully add one todo task');
     const submitHandler=e=>{
         e.preventDefault()
         addInfos(info)
@@ -36,7 +35,8 @@ const TodoForm =() =>{
         // dispatch(addInfoAction(info))
         // setInfos((prepInfos)=>{return [...prepInfos,info]})
         setInfo(initalInfo)
-        addToast('Successfully add one todo task', { appearance: 'success' })
+        notify()
+        // addToast('Successfully add one todo task', { appearance: 'success' })
     }
     return (
             <Container>
@@ -92,6 +92,7 @@ const TodoForm =() =>{
                         </Col>
                     </Form.Group>
             </Form>
+           
             </Container>
     )
 }

@@ -4,10 +4,9 @@ import { LinkContainer } from 'react-router-bootstrap'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
-import { useToasts } from 'react-toast-notifications';
+import toast from 'react-hot-toast';
 import './InfoTable.scss'
-import { Link } from 'react-router-dom';
-import InfodetailScreen from '../../../infodetailscreens/InfodetailScreen';
+
 
 
 function InfoTable(props){
@@ -21,7 +20,6 @@ function InfoTable(props){
     const [sortType, setSortType]=useState(0)
     const [allinfos,setAllinfos]=useState(infos)
 
-    const { addToast } = useToasts();
     console.log(infos)
     console.log(checkNum)
     // const dispatch = useDispatch()
@@ -30,7 +28,7 @@ function InfoTable(props){
         delInfo(id)
         setCheckNum(pre=>pre-1)
         console.log(checkNum)
-        addToast('Successfully deleted one todo task', { appearance: 'success' })
+        toast('Successfully deleted one todo task')
     }
     const checkedItemHandler=(event)=>{
         var isChecked=event.target.checked;  
@@ -58,7 +56,7 @@ function InfoTable(props){
         setSelectedChecked(false)
         setCheckNum(0)
         console.log(checkNum)
-        addToast('Successfully deleted selected todo task', { appearance: 'success' })
+        toast('Successfully deleted selected todo task')
     }
     const sortHandler=()=>{
         if(sortType===0)
