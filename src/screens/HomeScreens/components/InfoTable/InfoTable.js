@@ -87,12 +87,9 @@ function InfoTable(props){
             setAllChecked(false)
         }
         else {
-            if(checkNum===infos.length){
-                setAllChecked(true)
-            }
-            else {
-                setAllChecked(false)
-            }
+            
+            setAllChecked(checkNum === infos.length)
+          
         }
 
         
