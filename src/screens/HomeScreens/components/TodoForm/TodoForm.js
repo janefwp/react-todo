@@ -5,9 +5,9 @@ import { InfosContext } from '../../../../context/InfosContext'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
-import TodoInput from './components/TodoInput'
-import TodoSelect from './components/TodoSelect';
-import Tododatepicker from './components/Tododatepicker';
+import TodoInput from '../public/TodoInput'
+import TodoSelect from '../public/TodoSelect';
+import Tododatepicker from '../public/Tododatepicker';
 // import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{

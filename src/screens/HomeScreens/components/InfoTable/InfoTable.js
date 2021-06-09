@@ -4,7 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
-import toast from 'react-hot-toast';
+import TodoSelect from '../public/TodoSelect'
+import toast from 'react-hot-toast'
 import './InfoTable.scss'
 
 
@@ -106,12 +107,13 @@ function InfoTable(props){
                     <Button variant='secondary' disabled={(checkNum===0)? true : false} onClick={deleteSelectedInfoHandler}>Delete seleted</Button> 
                 </Col>
                 <Col md={{ span: 4, offset: 4 }}>
-                    <label >Filter by category: &nbsp;</label>
+                    <TodoSelect label="Filter by" as="select" name="category" required={true} onChange={filterHandler}/>
+                    {/* <label >Filter by category: &nbsp;</label>
                     <select name="category" onChange={filterHandler}> 
                         <option value="">All</option>
                         <option value="html">html</option>
                         <option value="css">css</option>
-                    </select>
+                    </select> */}
                 </Col>
             </Row>
             <br />
