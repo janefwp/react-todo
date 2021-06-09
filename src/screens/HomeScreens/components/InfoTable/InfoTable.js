@@ -5,6 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 // import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
 import TodoSelect from '../public/TodoSelect'
+import Infolist from '../public/Infolist'
 import toast from 'react-hot-toast'
 import './InfoTable.scss'
 
@@ -108,12 +109,6 @@ function InfoTable(props){
                 </Col>
                 <Col md={{ span: 4, offset: 4 }}>
                     <TodoSelect label="Filter by" as="select" name="category" required={true} onChange={filterHandler}/>
-                    {/* <label >Filter by category: &nbsp;</label>
-                    <select name="category" onChange={filterHandler}> 
-                        <option value="">All</option>
-                        <option value="html">html</option>
-                        <option value="css">css</option>
-                    </select> */}
                 </Col>
             </Row>
             <br />
@@ -133,19 +128,20 @@ function InfoTable(props){
                 </tr>
             </thead>
             <tbody>
-                {allinfos.map(item=>(        
-                        <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
-                            <td>
-                                <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
-                            </td>
-                            <LinkContainer to={`/todo/${item.id}`}>   
-                            <td>{item.description}</td>
-                            </LinkContainer>  
-                            <td>{item.category}</td>
+                {allinfos.map(item=>(   
+                    <Infolist item={item} onChange={checkedItemHandler} onClick={() => deleteInfoHandler(item.id)}/>
+                        // <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
+                        //     <td>
+                        //         <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
+                        //     </td>
+                        //     <LinkContainer to={`/todo/${item.id}`}>   
+                        //     <td>{item.description}</td>
+                        //     </LinkContainer>  
+                        //     <td>{item.category}</td>
                             
-                            <td>{item.deadline.toDateString()}</td>
-                           <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
-                        </tr>                          
+                        //     <td>{item.deadline.toDateString()}</td>
+                        //    <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
+                        // </tr>                          
                 ))}
             </tbody>
             </Table>
