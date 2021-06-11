@@ -1,5 +1,4 @@
 import React from 'react'
-
 import {Row,Col, Container} from 'react-bootstrap'
 import TodoForm from './components/todoform/TodoForm'
 import InfoTable from './components/infotable/InfoTable'
@@ -7,6 +6,7 @@ import InfoTable from './components/infotable/InfoTable'
 function HomeScreen() {
 
     return (
+
         <Row>
             <Col md={4} className='bg-light'>
                 <TodoForm />
@@ -15,6 +15,7 @@ function HomeScreen() {
                 <InfoTable />
             </Col>
         </Row>
+ 
     )
 }
 
