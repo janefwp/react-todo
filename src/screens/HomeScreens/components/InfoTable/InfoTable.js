@@ -8,6 +8,7 @@ import TodoSelect from '../public/TodoSelect'
 import Infolist from '../public/Infolist'
 import toast from 'react-hot-toast'
 import './InfoTable.scss'
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -21,6 +22,7 @@ function InfoTable(props){
     const [checkNum, setCheckNum]= useState(0)
     const [sortType, setSortType]=useState(0)
     const [allinfos,setAllinfos]=useState(infos)
+    const { t, i18n } = useTranslation();
 
     console.log(infos)
     console.log(checkNum)
@@ -99,16 +101,16 @@ function InfoTable(props){
 
     return (
         <Container>
-            <h3>Todo List</h3>
+            <h3>{t('todolist.title')}</h3>
             <br />
             {(infos.length!=0) && 
             <div>
             <Row>
                 <Col md={4}>
-                    <Button variant='secondary' disabled={(checkNum===0)? true : false} onClick={deleteSelectedInfoHandler}>Delete seleted</Button> 
+                    <Button variant='secondary' disabled={(checkNum===0)? true : false} onClick={deleteSelectedInfoHandler}>{t('todolist.delete_selected')}</Button> 
                 </Col>
                 <Col md={{ span: 4, offset: 4 }}>
-                    <TodoSelect label="Filter by" as="select" name="category" required={true} onChange={filterHandler}/>
+                    <TodoSelect label={t('todolist.filter')} as="select" name="category" required={true} onChange={filterHandler}/>
                 </Col>
             </Row>
             <br />
@@ -117,14 +119,14 @@ function InfoTable(props){
             <thead>
                 <tr>
                     <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
-                    <th>Description</th>
-                    <th>Category</th>
+                    <th>{t('todolist.description')}</th>
+                    <th>{t('todolist.category')}</th>
                     <th>
                         <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
-                            <strong>Deadline</strong>
+                            <strong>{t('todolish.deadline')}</strong>
                         </button>
                     </th>                 
-                    <th>Operate</th>
+                    <th>{t('todolist.operate')}</th>
                 </tr>
             </thead>
             <tbody>

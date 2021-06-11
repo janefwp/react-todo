@@ -1,0 +1,22 @@
+{
+    "todo": "任务",
+    "about": "关于",
+    "submit": "提交",
+    "todoform": {
+      "title": "创建新的任务",
+      "description": "描述",
+      "category":"类别",
+      "content": "内容",
+      "deadline":"完成时限"
+    },
+    "todolist":{
+        "title": "待办事项列表",
+        "delete":"删除",
+        "delete_selected":"删除所选项",
+        "description": "描述",
+        "category":"类别",
+        "deadline":"完成时限",
+        "operate":"操作",
+        "filter":"筛选"
+    }
+  }

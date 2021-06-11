@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import './App.scss'
 
 function App() {
   return (
-    
+  <Suspense fallback="loading">
     <InfosProvider >
       <Router >
         <Header />
@@ -29,7 +29,7 @@ function App() {
         <Footer />
       </Router>
       </InfosProvider>
-     
+    </Suspense>
 
     );
 }
