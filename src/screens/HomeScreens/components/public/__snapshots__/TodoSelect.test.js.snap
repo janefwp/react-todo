@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there is select type 1`] = `
+<fieldset>
+  <label />
+  <select>
+    <option
+      value=""
+    >
+      Choose...
+    </option>
+    <option
+      value="css"
+    >
+      css
+    </option>
+    <option
+      value="html"
+    >
+      html
+    </option>
+  </select>
+</fieldset>
+`;

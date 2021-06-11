@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when there is input type 1`] = `
+<fieldset>
+  <label />
+  <input />
+</fieldset>
+`;
+
+exports[`renders correctly when there is input type 2`] = `
+<fieldset>
+  <label />
+  <textarea />
+</fieldset>
+`;
+
+exports[`renders correctly when there is textarea type 1`] = `
+<fieldset>
+  <label />
+  <textarea />
+</fieldset>
+`;
