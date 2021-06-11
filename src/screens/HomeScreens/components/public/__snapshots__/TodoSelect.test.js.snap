@@ -1,5 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders correctly when there are type and label 1`] = `
+<fieldset>
+  <label>
+    Categrory
+  </label>
+  <select>
+    <option
+      value=""
+    >
+      Choose...
+    </option>
+    <option
+      value="css"
+    >
+      css
+    </option>
+    <option
+      value="html"
+    >
+      html
+    </option>
+  </select>
+</fieldset>
+`;
+
+exports[`renders correctly when there are type,label, name 1`] = `
+<fieldset>
+  <label>
+    Categrory
+  </label>
+  <select
+    name="category"
+  >
+    <option
+      value=""
+    >
+      Choose...
+    </option>
+    <option
+      value="css"
+    >
+      css
+    </option>
+    <option
+      value="html"
+    >
+      html
+    </option>
+  </select>
+</fieldset>
+`;
+
+exports[`renders correctly when there are type,label, name,requrie 1`] = `
+<fieldset>
+  <label>
+    Categrory
+  </label>
+  <select
+    name="category"
+    required={true}
+  >
+    <option
+      value=""
+    >
+      Choose...
+    </option>
+    <option
+      value="css"
+    >
+      css
+    </option>
+    <option
+      value="html"
+    >
+      html
+    </option>
+  </select>
+</fieldset>
+`;
+
+exports[`renders correctly when there are type,label, name,requrie, onChange 1`] = `
+<fieldset>
+  <label>
+    Categrory
+  </label>
+  <select
+    name="category"
+    onChange={[Function]}
+    required={true}
+  >
+    <option
+      value=""
+    >
+      Choose...
+    </option>
+    <option
+      value="css"
+    >
+      css
+    </option>
+    <option
+      value="html"
+    >
+      html
+    </option>
+  </select>
+</fieldset>
+`;
+
 exports[`renders correctly when there is select type 1`] = `
 <fieldset>
   <label />

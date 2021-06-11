@@ -7,16 +7,22 @@ exports[`renders correctly when there is input type 1`] = `
 </fieldset>
 `;
 
-exports[`renders correctly when there is input type 2`] = `
+exports[`renders correctly when there is textarea type 1`] = `
 <fieldset>
   <label />
   <textarea />
 </fieldset>
 `;
 
-exports[`renders correctly when there is textarea type 1`] = `
+exports[`renders correctly with all props input type 1`] = `
 <fieldset>
-  <label />
-  <textarea />
+  <label>
+    Description
+  </label>
+  <input
+    name="description"
+    onChange={[Function]}
+    required={true}
+  />
 </fieldset>
 `;
