@@ -1,14 +1,14 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {Button,Table, Container,Row, Col} from 'react-bootstrap'
+import {Button,Table, Container,Row, Col, Modal} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { delInfoAction, changeCheckedstatusAction, changeAllCheckedstatusAction, delSelectedInfoAction} from '../../../../redux/actions'
 import { InfosContext } from '../../../../context/InfosContext'
 import TodoSelect from '../public/TodoSelect'
 import Infolist from '../public/Infolist'
+import TodForm from '../todoform/TodoForm'
 import toast from 'react-hot-toast'
 import './InfoTable.scss'
 import { useTranslation } from 'react-i18next';
+import TodoForm from '../todoform/TodoForm'
 
 
 
@@ -24,11 +24,14 @@ function InfoTable(props){
     const [allinfos,setAllinfos]=useState(infos)
     const { t, i18n } = useTranslation();
 
-    console.log(infos)
-    console.log(checkNum)
-    // const dispatch = useDispatch()
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    
     const deleteInfoHandler=(id)=>{
-        // dispatch(delInfoAction(id))
+        
         delInfo(id)
         setCheckNum(pre=>pre-1)
         console.log(checkNum)
@@ -39,13 +42,12 @@ function InfoTable(props){
         isChecked ? setCheckNum(pre=>pre+1) : setCheckNum(pre=>pre-1) 
         var infoid=parseInt(event.target.value);
         changeCheckedStatus({isChecked:isChecked,id:infoid})
-        // dispatch(changeCheckedstatusAction({isChecked:isChecked,id:infoid}))
+        
         setSelectedChecked(!selectedChecked)
 
     }
     const selectAllHandler=(event)=>{
-        // dispatch(changeAllCheckedstatusAction(event.target.checked))
-        // allinfo.map(item=>item.isChecked=event.target.checked)
+
         var isChecked=event.target.checked
         isChecked ? setCheckNum(infos.length) : setCheckNum(0)
         selectAll(event.target.checked)
@@ -54,12 +56,11 @@ function InfoTable(props){
     }
     
     const deleteSelectedInfoHandler=()=>{
-        // dispatch(delSelectedInfoAction())
+     
         delSeleted()
         setAllChecked(false)
         setSelectedChecked(false)
         setCheckNum(0)
-        console.log(checkNum)
         toast('Successfully deleted selected todo task')
     }
     const sortHandler=()=>{
@@ -83,25 +84,32 @@ function InfoTable(props){
             setAllinfos(infos.filter(item=>item.category===e.target.value))
         }
         
-    }
+    }  
 
     useEffect(() => {
         setAllinfos(infos)
         if(checkNum ===0){
             setAllChecked(false)
         }
-        else {
-            
-            setAllChecked(checkNum === infos.length)
-          
+        else {    
+            setAllChecked(checkNum === infos.length)      
         }
-
         
     }, [checkNum, infos])
 
     return (
         <Container>
-            <h3>{t('todolist.title')}</h3>
+            <Row>
+                <Col md={8}>
+                    <h3>{t('todolist.title')}</h3>
+                </Col>
+                <Col md={4}>
+                    <Button onClick={handleShow}>{t('todoform.title')}</Button>
+                </Col>
+            </Row>
+            <TodoForm show={show} onHide={handleClose}/>
+
+            
             <br />
             {(infos.length!=0) && 
             <div>
@@ -132,18 +140,7 @@ function InfoTable(props){
             <tbody>
                 {allinfos.map(item=>(   
                     <Infolist item={item} onChange={checkedItemHandler} onClick={() => deleteInfoHandler(item.id)}/>
-                        // <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
-                        //     <td>
-                        //         <input type="checkbox" value={item.id} onChange={checkedItemHandler} checked={item.isChecked}/>
-                        //     </td>
-                        //     <LinkContainer to={`/todo/${item.id}`}>   
-                        //     <td>{item.description}</td>
-                        //     </LinkContainer>  
-                        //     <td>{item.category}</td>
-                            
-                        //     <td>{item.deadline.toDateString()}</td>
-                        //    <td><Button variant="light" onClick={() => deleteInfoHandler(item.id)}>Delete</Button></td>
-                        // </tr>                          
+                                          
                 ))}
             </tbody>
             </Table>

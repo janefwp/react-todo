@@ -1,5 +1,5 @@
 import React,{useState, useContext} from 'react'
-import {Form,Button,Row,Col, Container} from 'react-bootstrap'
+import {Form,Button,Row,Col, Container,Modal} from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { InfosContext } from '../../../../context/InfosContext'
 import DatePicker from "react-datepicker";
@@ -11,7 +11,7 @@ import Tododatepicker from '../public/Tododatepicker';
 import { useTranslation } from 'react-i18next';
 // import {addInfoAction} from '../../../../redux/actions'
 
-const TodoForm =() =>{
+const TodoForm =(props) =>{
     const initalInfo = {
         id: null,
         description: '',
@@ -24,7 +24,7 @@ const TodoForm =() =>{
     const {addInfos}=useContext(InfosContext)
     const [endDate, setEndDate] = useState(new Date());
     const { t, i18n } = useTranslation();
-    console.log(t)
+
     const handleInputChange=(e)=>{
         console.log(e)
         const { name, value } = e.target
@@ -35,18 +35,20 @@ const TodoForm =() =>{
     const notify = () => toast('Successfully add one todo task');
     const submitHandler=e=>{
         e.preventDefault()
+        props.onHide()
         addInfos(info)
         console.log(info)
-        // dispatch(addInfoAction(info))
-        // setInfos((prepInfos)=>{return [...prepInfos,info]})
+
         setInfo(initalInfo)
         notify()
-        // addToast('Successfully add one todo task', { appearance: 'success' })
+       
     }
     return (
-            <Container>
-            <h4>{t('todoform.title')}</h4>
-            <br />
+            <Modal show={props.show} onHide={props.onHide}>
+            <Modal.Header closeButton>
+                <Modal.Title>{t('todoform.title')}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
             <Form onSubmit={submitHandler}>
                     <TodoInput label={t('todoform.description')} as="input" name="description" value={info.description} required={true} onChange={handleInputChange}/>
                     <TodoSelect label={t('todoform.category')} as="select" name="category" value={info.category} required={true} onChange={handleInputChange} />
@@ -57,56 +59,11 @@ const TodoForm =() =>{
                             <Button type="submit">{t('submit')}</Button>
                         </Col>
                     </Form.Group>
-                    {/* <Form.Group as={Row} >
-                        <Form.Label column sm={3}>
-                            Discription
-                        </Form.Label>
-                        <Col sm={9}>
-                            <Form.Control type="text" name="description" value={info.description} required={true} onChange={handleInputChange}  />
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} >
-                        <Form.Label column sm={3}>
-                            Category
-                        </Form.Label>
-                        <Col sm={9}>
-                            <Form.Control as="select"
-                                    required={true} 
-                                    name="category"
-                                    value={info.category}
-                                    onChange={handleInputChange}>
-                            <option value="">Choose...</option>
-                            <option value="css">css</option>
-                            <option value="html">html</option>
-                            </Form.Control>
-                        </Col>                    
-                    </Form.Group>
-
-                    <Form.Group as={Row} >
-                        <Form.Label column sm={3}>
-                            Content
-                        </Form.Label>
-                        <Col sm={9}>
-                            <Form.Control as="textarea"  rows={3} name="content" value={info.content} required={true} onChange={handleInputChange} />
-                        </Col>
-                    </Form.Group>
-
-                    <Form.Group as={Row} >
-                        <Form.Label column sm={3}>
-                            Deadline
-                        </Form.Label>
-                        <Col sm={9}>
-                            <DatePicker selected={endDate} onChange={(date)=>setInfo({...info,['deadline']:date})} />
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row}>
-                        <Col sm={{ span: 9, offset: 3 }}>
-                            <Button type="submit">Submit</Button>
-                        </Col>
-                    </Form.Group> */}
             </Form>
-           
-            </Container>
+            </Modal.Body>
+ 
+            </Modal>
+            // </Container>
     )
 }
 

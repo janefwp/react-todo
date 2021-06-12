@@ -3,7 +3,7 @@
     "about": "About",
     "submit":"Submit",
     "todoform": {
-      "title": "Create a new task",
+      "title": "Create a new todo",
       "description": "Description",
       "category":"Category",
       "content": "Content",
