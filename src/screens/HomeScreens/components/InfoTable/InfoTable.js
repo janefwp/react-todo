@@ -104,7 +104,7 @@ function InfoTable(props){
                     <h3>{t('todolist.title')}</h3>
                 </Col>
                 <Col md={4}>
-                    <Button onClick={handleShow}>Create a New Todo</Button>
+                    <Button onClick={handleShow}>{t('todoform.title')}</Button>
                 </Col>
             </Row>
             <TodoForm show={show} onHide={handleClose}/>
