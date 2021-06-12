@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import TodoInput from '../public/TodoInput'
 import TodoSelect from '../public/TodoSelect';
 import Tododatepicker from '../public/Tododatepicker';
+import { useTranslation } from 'react-i18next';
 // import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =() =>{
@@ -22,8 +23,8 @@ const TodoForm =() =>{
     const [info, setInfo]=useState(initalInfo)
     const {addInfos}=useContext(InfosContext)
     const [endDate, setEndDate] = useState(new Date());
-    // const [startDate, setStartDate] = useState(new Date());
-    // const dispatch = useDispatch()
+    const { t, i18n } = useTranslation();
+    console.log(t)
     const handleInputChange=(e)=>{
         console.log(e)
         const { name, value } = e.target
@@ -44,16 +45,16 @@ const TodoForm =() =>{
     }
     return (
             <Container>
-            <h4>Create New Task</h4>
+            <h4>{t('todoform.title')}</h4>
             <br />
             <Form onSubmit={submitHandler}>
-                    <TodoInput label="Description" as="input" name="description" value={info.description} required={true} onChange={handleInputChange}/>
-                    <TodoSelect label="Category" as="select" name="category" value={info.category} required={true} onChange={handleInputChange} />
-                    <TodoInput label="Content" as="textarea" name="content" value={info.content} required={true} onChange={handleInputChange}/>
-                    <Tododatepicker label="Deadline" as="DatePicker" name="dealine" selected={endDate} onChange={(date)=>setInfo({...info,['deadline']:date})}/>
+                    <TodoInput label={t('todoform.description')} as="input" name="description" value={info.description} required={true} onChange={handleInputChange}/>
+                    <TodoSelect label={t('todoform.category')} as="select" name="category" value={info.category} required={true} onChange={handleInputChange} />
+                    <TodoInput label={t('todoform.content')} as="textarea" name="content" value={info.content} required={true} onChange={handleInputChange}/>
+                    <Tododatepicker label={t('todoform.deadline')} as="DatePicker" name="dealine" selected={endDate} onChange={(date)=>setInfo({...info,['deadline']:date})}/>
                     <Form.Group as={Row}>
                         <Col sm={{ span: 8, offset: 9 }}>
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit">{t('submit')}</Button>
                         </Col>
                     </Form.Group>
                     {/* <Form.Group as={Row} >

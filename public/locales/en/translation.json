@@ -1,0 +1,22 @@
+{
+    "todo": "Todo",
+    "about": "About",
+    "submit":"Submit",
+    "todoform": {
+      "title": "Create a new task",
+      "description": "Description",
+      "category":"Category",
+      "content": "Content",
+      "deadline":"Dealine"
+    },
+    "todolist":{
+        "title": "Todo List",
+        "delete":"Delete",
+        "delete_selected":"Delete Selected",
+        "description": "Description",
+        "category":"Category",
+        "deadline":"Dealine",
+        "operate":"Operate",
+        "filter":"Filter by"
+    }
+  }
