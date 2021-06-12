@@ -24,11 +24,6 @@ const TodoForm =(props) =>{
     const {addInfos}=useContext(InfosContext)
     const [endDate, setEndDate] = useState(new Date());
     const { t, i18n } = useTranslation();
-    
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const handleInputChange=(e)=>{
         console.log(e)
