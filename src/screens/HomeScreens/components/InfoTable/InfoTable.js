@@ -131,7 +131,7 @@ function InfoTable(props){
                     <th>{t('todolist.category')}</th>
                     <th>
                         <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
-                            <strong>{t('todolish.deadline')}</strong>
+                            <strong>{t('todolist.deadline')}</strong>
                         </button>
                     </th>                 
                     <th>{t('todolist.operate')}</th>
