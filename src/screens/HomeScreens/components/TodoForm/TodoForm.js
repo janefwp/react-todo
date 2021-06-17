@@ -1,15 +1,12 @@
 import React,{useState, useContext} from 'react'
-import {Form,Button,Row,Col, Container,Modal} from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import {Form,Button,Row,Col,Modal} from 'react-bootstrap'
 import { InfosContext } from '../../../../context/InfosContext'
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
 import TodoInput from '../public/TodoInput'
 import TodoSelect from '../public/TodoSelect';
 import Tododatepicker from '../public/Tododatepicker';
 import { useTranslation } from 'react-i18next';
-// import {addInfoAction} from '../../../../redux/actions'
 
 const TodoForm =(props) =>{
     const initalInfo = {
@@ -22,8 +19,8 @@ const TodoForm =(props) =>{
     }
     const [info, setInfo]=useState(initalInfo)
     const {addInfos}=useContext(InfosContext)
-    const [endDate, setEndDate] = useState(new Date());
-    const { t, i18n } = useTranslation();
+    const [endDate] = useState(new Date());
+    const { t } = useTranslation();
 
     const handleInputChange=(e)=>{
         console.log(e)

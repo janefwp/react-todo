@@ -1,13 +1,10 @@
 import React,{useContext} from 'react'
-import { useSelector } from 'react-redux'
 import { InfosContext } from '../../context/InfosContext'
 import { Container } from 'react-bootstrap'
 
 function InfodetailScreen(props) {
     const id = parseInt((props.match.params.id),10)
     const {infos}=useContext(InfosContext)
-    // const infos= useSelector(state=>state.infos)
-    // const allinfo = infos.infos
 
     const info= infos.find(item=>item.id === id)
     const clickHandler=()=>{

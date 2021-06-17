@@ -4,8 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap'
 import {useTranslation} from 'react-i18next';
 
 function Infolist(props) {
-    const { t, i18n } = useTranslation();
-    var item=props.item
+    const { t } = useTranslation();
+    var item= props.item
     return (
         <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
         <td>
