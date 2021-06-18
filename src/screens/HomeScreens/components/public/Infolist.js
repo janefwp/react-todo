@@ -7,7 +7,7 @@ function Infolist(props) {
     const { t } = useTranslation();
     var item= props.item
     return (
-        <tr className={item.isChecked ? 'selected': ''}  key={item.id} >
+        <tr className={item.isChecked ? 'selected': ''} key={item.id} >
         <td>
             <input type="checkbox" value={item.id} onChange={props.onChange} checked={item.isChecked}/>
         </td>

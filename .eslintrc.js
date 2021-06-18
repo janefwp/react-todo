@@ -18,6 +18,11 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "curly": "error",
+        "eqeqeq": "off",
+        "no-multi-spaces": "error",
+        // "quotes": ["error", "double"]
+
     }
 };

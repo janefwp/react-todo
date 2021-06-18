@@ -128,7 +128,7 @@ function InfoTable(){
                     <th>{t('todolist.description')}</th>
                     <th>{t('todolist.category')}</th>
                     <th>
-                        <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
+                        <button type="button" style={{border: 'none', background:'none'}} onClick={sortHandler}>
                             <strong>{t('todolist.deadline')}</strong>
                         </button>
                     </th>                 
