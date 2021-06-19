@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-function RegisterScreen() {
+
+function RegisterScreen({location,history}) {
     const initialUser={
         name:'',
         email:'',
@@ -11,8 +13,8 @@ function RegisterScreen() {
 
     }
     const [user, setUser]=useState(initialUser)
-
-
+    const redirect = location.search ? location.search.split('=')[1] : `/`
+    const [loading,setLoading]=useState(false)
     const changeHandler=(e)=>{
         const {name, value}=e.target
         setUser({ ...user, [name]: value })
@@ -27,16 +29,29 @@ function RegisterScreen() {
         }
       
             axios.post('https://api-nodejs-todolist.herokuapp.com/user/register',
-            {"name":user.name,"email":user.email,"password":user.email},
+            {"name":user.name,"email":user.email,"password":user.password,"age":user.age},
             config
             )
-            .then()
+            .then(res=>{
+                setLoading(true)
+                console.log(res.response)
+                toast(res.response.data)
+            })
             .catch(error=>{
                 console.log(error.response)
-                toast(error.response.statusText)
+                toast(error.response.data)
             })
 
     }
+
+    useEffect(()=> {
+       if(loading)
+       {
+        history.push(redirect)
+       }
+            
+        
+    },[loading])
 
     return (
         <Row className="justify-content-md-center">
@@ -63,7 +78,14 @@ function RegisterScreen() {
 
                     <Button type='submit' variant='primary'>Register</Button>
                 </Form> 
-                
+                <Row className='py-3'>
+                <Col>
+                    Have a Account? <Link 
+                    to ={redirect ? `/login?redirect=${redirect}` : `/login`} >
+                        Sign In
+                    </Link>
+                </Col>
+            </Row>
             </Col>
 
         </Row>
