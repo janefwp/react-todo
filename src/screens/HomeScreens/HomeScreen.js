@@ -1,6 +1,4 @@
 import React from 'react'
-import {Row,Col,Button} from 'react-bootstrap'
-import TodoForm from './components/todoform/TodoForm'
 import InfoTable from './components/infotable/InfoTable'
 
 function HomeScreen() {

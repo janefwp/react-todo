@@ -1,10 +1,8 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {Button,Table, Container,Row, Col, Modal} from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
+import {Button,Table, Container,Row, Col} from 'react-bootstrap'
 import { InfosContext } from '../../../../context/InfosContext'
 import TodoSelect from '../public/TodoSelect'
 import Infolist from '../public/Infolist'
-import TodForm from '../todoform/TodoForm'
 import toast from 'react-hot-toast'
 import './InfoTable.scss'
 import { useTranslation } from 'react-i18next';
@@ -12,7 +10,7 @@ import TodoForm from '../todoform/TodoForm'
 
 
 
-function InfoTable(props){
+function InfoTable(){
 
     // const infos= useSelector(state=>state.infos)
     const {infos, changeCheckedStatus, selectAll, delInfo, delSeleted}=useContext(InfosContext)
@@ -22,7 +20,7 @@ function InfoTable(props){
     const [checkNum, setCheckNum]= useState(0)
     const [sortType, setSortType]=useState(0)
     const [allinfos,setAllinfos]=useState(infos)
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     const [show, setShow] = useState(false);
 
@@ -130,7 +128,7 @@ function InfoTable(props){
                     <th>{t('todolist.description')}</th>
                     <th>{t('todolist.category')}</th>
                     <th>
-                        <button type="button" style={{border: 'none', background:'none'}}  onClick={sortHandler}>
+                        <button type="button" style={{border: 'none', background:'none'}} onClick={sortHandler}>
                             <strong>{t('todolist.deadline')}</strong>
                         </button>
                     </th>                 
@@ -139,7 +137,7 @@ function InfoTable(props){
             </thead>
             <tbody>
                 {allinfos.map(item=>(   
-                    <Infolist item={item} onChange={checkedItemHandler} onClick={() => deleteInfoHandler(item.id)}/>
+                    <Infolist key={item.id} item={item} onChange={checkedItemHandler} onClick={() => deleteInfoHandler(item.id)}/>
                                           
                 ))}
             </tbody>
