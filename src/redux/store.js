@@ -1,11 +1,14 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {infoReducer} from './reducer';
+import {infoReducer, infoListReducer,infoAddReducer,infoDelReducer} from './reducer';
 import thunk from 'redux-thunk'
 
 const middleware=[thunk]
 const initialState={ };
 const todoReducer = combineReducers({
+  infoList: infoListReducer,
+  infoAdd: infoAddReducer,
+  infoDel: infoDelReducer,
     infos:infoReducer
   });
 

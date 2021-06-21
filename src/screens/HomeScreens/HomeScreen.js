@@ -1,18 +1,21 @@
-import React from 'react'
+import React,{useContext, useEffect} from 'react'
 import InfoTable from './components/infotable/InfoTable'
+import { InfosContext } from '../../context/InfosContext'
+import LoginScreen from '../loginscreens/LoginScreen'
 
-function HomeScreen() {
+function HomeScreen({history}) {
+
+    const {userInfo}=useContext(InfosContext)
+    useEffect(() => {
+       if(!userInfo){
+           history.push('/login')
+       } 
+     
+    }, [history])
 
     return (
-        <InfoTable />
-        // <Row>
-        //     <Col md={4} className='bg-light'>
-        //         <TodoForm />
-        //     </Col>
-        //     <Col md ={8}>
-        //         <InfoTable />
-        //     </Col>
-        // </Row>
+        <InfoTable />    
+    
  
     )
 }

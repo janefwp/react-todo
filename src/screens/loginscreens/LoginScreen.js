@@ -1,46 +1,32 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { InfosContext } from '../../context/InfosContext'
 
 function LoginScreen({location,history}) {
+    const {userInfo,userLogin, loginLoading,loginError}=useContext(InfosContext)
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [loading,setLoading]=useState(false)
     const redirect = location.search ? location.search.split('=')[1] : `/`
     const submitHandler=(e)=>{
+        
         e.preventDefault()
-
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }
-            console.log(email)
-            console.log(password)
-            axios.post('https://api-nodejs-todolist.herokuapp.com/user/login',
-            {"email":email,"password":password},
-            config
-            )
-            .then(()=>{
-                setLoading(true)
-                toast("Login successfully")
-            }
-                
-            )
-            .catch(
-                toast("Unable to login")
-            )
+        userLogin(email,password)
+    
+        // setLoading(true)
 
     }
+    
     useEffect(() => {
-        if(loading)
+        if(loginLoading)
         {
             history.push(redirect)
         }
         
-    }, [loading])
+    }, [loginLoading])
 
     return (
 

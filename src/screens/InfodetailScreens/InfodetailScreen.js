@@ -1,12 +1,19 @@
-import React,{useContext} from 'react'
-import { InfosContext } from '../../context/InfosContext'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+// import { InfosContext } from '../../context/InfosContext'
 import { Container } from 'react-bootstrap'
 
 function InfodetailScreen(props) {
-    const id = parseInt((props.match.params.id),10)
-    const {infos}=useContext(InfosContext)
+    console.log(props.match.params)
+    const id = props.match.params.id
+    const infolist = useSelector(state=>state.infoList)
+    const {infos}=infolist
 
-    const info= infos.find(item=>item.id === id)
+    console.log(infos)
+    console.log(id)
+    
+    const info= infos.find(item=>item._id === id)
+    console.log(info)
     const clickHandler=()=>{
         console.log(props)
         props.history.push(`/`)
@@ -17,10 +24,6 @@ function InfodetailScreen(props) {
             <br /> 
             <h5>Description</h5>      
             <p>{info.description}</p>
-            <h5>Category</h5>
-            <p>{info.category}</p>
-            <h5>Content</h5>
-            <p>{info.content}</p>
          <button onClick={clickHandler}>Back</button>
         </Container>
     )
