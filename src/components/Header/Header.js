@@ -31,12 +31,12 @@ function Header() {
                     {userInfo ? (
                                 <NavDropdown title={userInfo.user.name} id='username'>
 
-                                <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={logoutHandler}>{t('logout')}</NavDropdown.Item>
 
                             </NavDropdown>
                             ) : (
                                 <LinkContainer to='/login'>
-                                <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                <Nav.Link><i className="fas fa-user"></i>{t('login')}</Nav.Link>
                                 </LinkContainer>
                             )
                             }

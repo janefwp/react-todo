@@ -2,6 +2,11 @@
     "todo": "任务",
     "about": "关于",
     "submit": "提交",
+    "login": "登录",
+    "register": "注册",
+    "logout": "登出",
+    "New Customer":"新用户？",
+    "Have a Account":"已有账号？",
     "todoform": {
       "title": "创建新的任务",
       "description": "描述",
@@ -18,5 +23,17 @@
         "deadline":"完成时限",
         "operate":"操作",
         "filter":"筛选"
-    }
+    },
+    
+      "loginform":{
+        "email":"邮箱",
+        "password":"密码"
+      },
+      "registerform":{
+        "name":"姓名",
+        "password":"密码",
+        "email":"邮箱",
+        "age":"年龄"
+      }
+    
   }

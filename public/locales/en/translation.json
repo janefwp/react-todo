@@ -2,12 +2,18 @@
     "todo": "Todo",
     "about": "About",
     "submit":"Submit",
+    "login":"Login",
+    "register":"Register",
+    "logout":"Logout",
+    "New Customer":"New Customer?",
+    "Have a Account":"Have a Account?",
     "todoform": {
       "title": "Create a new todo",
       "description": "Description",
       "category":"Category",
       "content": "Content",
       "deadline":"Dealine"
+
     },
     "todolist":{
         "title": "Todo List",
@@ -18,5 +24,17 @@
         "deadline":"Dealine",
         "operate":"Operate",
         "filter":"Filter by"
-    }
+    },
+    
+      "loginform":{
+        "email":"Email",
+        "password":"Password"
+      },
+      "registerform":{
+        "name":"Name",
+        "password":"Password",
+        "email":"Email",
+        "age":"Age"
+      }
+    
   }

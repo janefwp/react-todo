@@ -51,8 +51,6 @@ function InfoTable(props){
         setAllChecked(!allChecked)
         
     }
-    
-
 
     useEffect(() => {
         if(userInfo){
@@ -91,7 +89,7 @@ function InfoTable(props){
             <Table className="table table-hover" >
             <thead>
                 <tr>
-                    <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th>
+                    {/* <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th> */}
                     <th>{t('todolist.description')}</th>
                     <th>{t('todolist.operate')}</th>
                 </tr>

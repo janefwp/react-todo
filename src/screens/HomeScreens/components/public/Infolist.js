@@ -8,9 +8,9 @@ function Infolist(props) {
     var item= props.item
     return (
         <tr key={item._id}>
-            <td>
+            {/* <td>
                 <input type="checkbox" value={item._id} onChange={props.onChange} checked={item.isChecked}/>
-            </td>
+            </td> */}
             <LinkContainer to={`/todo/${item._id}`}>   
                 <td>{item.description}</td>
             </LinkContainer>  

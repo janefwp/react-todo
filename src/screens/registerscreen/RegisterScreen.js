@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect,useContext} from 'react'
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
-import axios from 'axios'
-import toast from 'react-hot-toast'
+import { InfosContext } from '../../context/InfosContext'
+import { useTranslation} from 'react-i18next';
 
 function RegisterScreen({location,history}) {
     const initialUser={
@@ -12,9 +12,11 @@ function RegisterScreen({location,history}) {
         age:0
 
     }
+    const {t}=useTranslation()
+    const {userRegister, registerLoading,registerError}=useContext(InfosContext)
     const [user, setUser]=useState(initialUser)
     const redirect = location.search ? location.search.split('=')[1] : `/`
-    const [loading,setLoading]=useState(false)
+    // const [loading,setLoading]=useState(false)
     const changeHandler=(e)=>{
         const {name, value}=e.target
         setUser({ ...user, [name]: value })
@@ -22,67 +24,49 @@ function RegisterScreen({location,history}) {
     }
     const submitHandler=(e)=>{
         e.preventDefault()
-        const config = {
-            headers: {
-                'Content-type': 'application/json'
-            }
-        }
-      
-            axios.post('https://api-nodejs-todolist.herokuapp.com/user/register',
-            {"name":user.name,"email":user.email,"password":user.password,"age":user.age},
-            config
-            )
-            .then(res=>{
-                setLoading(true)
-                console.log(res.response)
-                toast(res.response.data)
-            })
-            .catch(error=>{
-                console.log(error.response)
-                toast(error.response.data)
-            })
+        userRegister(user)
 
     }
 
     useEffect(()=> {
-       if(loading)
+       if(registerLoading)
        {
         history.push(redirect)
        }
             
         
-    },[loading])
+    },[registerLoading])
 
     return (
         <Row className="justify-content-md-center">
             <Col xs={12} md={4}>
                 <Form onSubmit={submitHandler}>
                     <Form.Group controlId="name">
-                        <Form.Label >Name</Form.Label>
+                        <Form.Label >{t('registerform.name')}</Form.Label>
                         <Form.Control required type="name" placeholder="Name" name="name" onChange={changeHandler}/>    
                     </Form.Group>
                     <Form.Group controlId="email">
-                        <Form.Label >Email</Form.Label>
+                        <Form.Label >{t('registerform.email')}</Form.Label>
                         <Form.Control required type="email" placeholder="Email" name="email" onChange={changeHandler}/>    
                     </Form.Group>
 
                     <Form.Group controlId="password">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>{t('registerform.password')}</Form.Label>
                         <Form.Control required type="password" placeholder="Password" name="password" onChange={changeHandler}/>
                     </Form.Group>
 
                     <Form.Group controlId="age">
-                        <Form.Label>Age</Form.Label>
+                        <Form.Label>{t('registerform.age')}</Form.Label>
                         <Form.Control required type="age" placeholder="Age" name="age" onChange={changeHandler}/>
                     </Form.Group>
 
-                    <Button type='submit' variant='primary'>Register</Button>
+                    <Button type='submit' variant='primary'>{t('register')}</Button>
                 </Form> 
                 <Row className='py-3'>
                 <Col>
-                    Have a Account? <Link 
+                    {t('Have a Account')} <Link 
                     to ={redirect ? `/login?redirect=${redirect}` : `/login`} >
-                        Sign In
+                        {t('login')}
                     </Link>
                 </Col>
             </Row>
