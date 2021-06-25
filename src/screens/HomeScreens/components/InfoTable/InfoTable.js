@@ -38,6 +38,7 @@ function InfoTable(props){
         // setCheckNum(pre=>pre-1)
         toast('Successfully deleted one todo task')
     }
+
     // const checkedItemHandler=(event)=>{
     //     var isChecked=event.target.checked;  
    
@@ -90,6 +91,7 @@ function InfoTable(props){
                 <tr>
                     {/* <th><input type="checkbox" checked={allChecked} onChange={selectAllHandler}/></th> */}
                     <th>{t('todolist.description')}</th>
+                    <th>{t('todolist.completed')}</th>
                     <th>{t('todolist.operate')}</th>
                 </tr>
             </thead>

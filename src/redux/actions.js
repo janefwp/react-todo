@@ -2,15 +2,15 @@ import {
     ADD_INFO_SUCCESS, 
     ADD_INFO_REQUEST,
     ADD_INFO_FAIL,
-    CHANGE_CHECKED_STATUS, 
-    CHANGE_ALL_CHECKED_STATUS,
-    DEL_SELECTED_ITEM,
     LIST_INFO_FAIL,
     LIST_INFO_REQUEST,
     LIST_INFO_SUCCESS,
     DEL_INFO_BYID_FAIL,
     DEL_INFO_BYID_REQUEST,
-    DEL_INFO_BYID_SUCCESS
+    DEL_INFO_BYID_SUCCESS,
+    UPDATE_INFO_BYID_FAIL,
+    UPDATE_INFO_BYID_REQUEST,
+    UPDATE_INFO_BYID_SUCCESS,
 } from './constants'
 import axios from 'axios'
 
@@ -99,26 +99,29 @@ export const delInfoAction=(id,userInfo)=>async(dispatch)=>{
 
 }
 
-export const delSelectedInfoAction=()=>(dispath)=>{
-    dispath({
-        type: DEL_SELECTED_ITEM,
+export const updateInfoAction=(id,completed,userInfo)=>async(dispatch)=>{
+    try {
+        dispatch({type: UPDATE_INFO_BYID_REQUEST})
+        const config = {
+            headers: {
+                'Authorization':`Bearer ${userInfo.token}`,
+                'Content-type': 'application/json'
+            }
+        }
+        const {data} = await axios.put(`https://api-nodejs-todolist.herokuapp.com/task/${id}`,{"completed":completed},config)
+        dispatch({
+            type:UPDATE_INFO_BYID_SUCCESS,
+            payload:data
+        })
+    }catch(error) {
+        console.log(error)
+        dispatch({
+            type: UPDATE_INFO_BYID_FAIL,
+            payload: error.response && error.response.data.detail
+            ? error.response.data.detail
+            : error.message,
+        })
         
-    })
-
-}
-export const changeCheckedstatusAction=(data)=>(dispath)=>{
-    dispath({
-        type:CHANGE_CHECKED_STATUS,
-        payload:data
-    })
-
-}
-
-
-export const changeAllCheckedstatusAction=(data)=>(dispath)=>{
-    dispath({
-        type:CHANGE_ALL_CHECKED_STATUS,
-        payload:data
-    })
+    }
 
 }

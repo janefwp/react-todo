@@ -8,15 +8,14 @@ function HomeScreen({history}) {
     const {userInfo}=useContext(InfosContext)
     
     useEffect(() => {
-       if(userInfo==null){
+       if(!userInfo){
            history.push('/login')
        } 
      
     }, [history,userInfo])
 
     return (
-        <InfoTable />    
-    
+        <InfoTable />   
  
     )
 }

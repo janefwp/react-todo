@@ -18,6 +18,7 @@
     "todolist":{
         "title": "Todo List",
         "delete":"Delete",
+        "completed":"Completed",
         "delete_selected":"Delete Selected",
         "description": "Description",
         "category":"Category",
