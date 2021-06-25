@@ -11,7 +11,8 @@ function InfosProvider({children}) {
     const [registerError,setRegisterError]=useState('')
 
     const userLogin=async(email,password)=>{
-        console.log('start to login')
+        setLoginLoading(true) 
+
         try{
             const config = {
                 headers: {
@@ -23,11 +24,9 @@ function InfosProvider({children}) {
                 const {data}= await axios.post('https://api-nodejs-todolist.herokuapp.com/user/login',
                 {"email":email,"password":password},
                 config
-                )
-                console.log(data)
+                ) 
                 setUserInfo(data)
-                console.log(userInfo)
-                setLoginLoading(true)    
+                setLoginLoading(false)    
                 toast("Login successfully")
              
         }
@@ -38,10 +37,11 @@ function InfosProvider({children}) {
     }
     const userLogout=()=>{
         setUserInfo(null)
+        
     }
 
     const userRegister=async(user)=>{
-        console.log('start to register')
+        setRegisterLoading(true) 
         try{
             const config = {
                 headers: {
@@ -52,8 +52,7 @@ function InfosProvider({children}) {
                 {"name":user.name,"email":user.email,"password":user.password,"age":user.age},
                 config
             )
-            console.log(data)
-            setRegisterLoading(true)    
+            setRegisterLoading(false)    
             toast("Register successfully")
         }
         catch(error){

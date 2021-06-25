@@ -13,7 +13,8 @@ function Header() {
     i18n.changeLanguage(lng);
     };
 
-    const logoutHandler=()=>{
+    const logoutHandler=(e)=>{
+        e.preventDefault()
         userLogout()
     }
     return (
@@ -23,7 +24,7 @@ function Header() {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/todo">{t('todo')}</Nav.Link>
+                        <Nav.Link href="/">{t('todo')}</Nav.Link>
                         <Nav.Link href="/about">{t('about')}</Nav.Link>
                     </Nav>
 

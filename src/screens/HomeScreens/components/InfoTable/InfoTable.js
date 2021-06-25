@@ -23,8 +23,8 @@ function InfoTable(props){
     const {userInfo}=useContext(InfosContext)
     const [allChecked, setAllChecked]=useState(false)
     const [selectedChecked, setSelectedChecked]=useState(false)
-    const [checkNum, setCheckNum]= useState(0)
-    const [allinfos,setAllinfos]=useState(infos)
+    // const [checkNum, setCheckNum]= useState(0)
+    // const [allinfos,setAllinfos]=useState(infos)
     const { t } = useTranslation();
 
     const [show, setShow] = useState(false);
@@ -44,29 +44,28 @@ function InfoTable(props){
         setSelectedChecked(!selectedChecked)
 
     }
-    const selectAllHandler=(event)=>{
+    // const selectAllHandler=(event)=>{
 
-        var isChecked=event.target.checked
-        isChecked ? setCheckNum(infos.length) : setCheckNum(0)
-        setAllChecked(!allChecked)
+    //     var isChecked=event.target.checked
+    //     isChecked ? setCheckNum(infos.length) : setCheckNum(0)
+    //     setAllChecked(!allChecked)
         
-    }
+    // }
 
     useEffect(() => {
         if(userInfo){
             dispatch(listInfoAction(userInfo))
+            // setAllinfos(infos)
         }
         
-        setAllinfos(infos)
-        console.log(allinfos)
-        if(checkNum ===0){
-            setAllChecked(false)
-        }
-        else {    
-            setAllChecked(checkNum === infos.length)      
-        }
+        // if(checkNum ===0){
+        //     setAllChecked(false)
+        // }
+        // else {    
+        //     setAllChecked(checkNum === infos.length)      
+        // }
         
-    }, [history,successAdd,successDel])
+    }, [successAdd,successDel, userInfo])
 
     return (
             <Container>

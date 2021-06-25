@@ -5,12 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 import { Provider } from 'react-redux'
-
+import {InfosProvider} from './context/InfosContext'
 import store from './redux/store'
 
 ReactDOM.render(
   <Provider store={store} >
+      <InfosProvider >
     <App />
+    </InfosProvider>
   </Provider>,
   // <React.StrictMode>
   //   <App />

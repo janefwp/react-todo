@@ -6,12 +6,13 @@ import LoginScreen from '../loginscreens/LoginScreen'
 function HomeScreen({history}) {
 
     const {userInfo}=useContext(InfosContext)
+    
     useEffect(() => {
        if(!userInfo){
            history.push('/login')
        } 
      
-    }, [history])
+    }, [history,userInfo])
 
     return (
         <InfoTable />    

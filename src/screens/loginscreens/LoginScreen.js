@@ -6,7 +6,7 @@ import { useTranslation} from 'react-i18next';
 
 function LoginScreen({location,history}) {
     const { t } = useTranslation();
-    const {userLogin, loginLoading}=useContext(InfosContext)
+    const {userLogin, loginLoading,userInfo}=useContext(InfosContext)
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const redirect = location.search ? location.search.split('=')[1] : `/`
@@ -22,10 +22,10 @@ function LoginScreen({location,history}) {
     useEffect(() => {
         if(loginLoading)
         {
-            history.push(redirect)
+            history.push('/')
         }
         
-    }, [loginLoading])
+    }, [userInfo])
 
     return (
 

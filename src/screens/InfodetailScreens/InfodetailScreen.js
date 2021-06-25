@@ -15,7 +15,6 @@ function InfodetailScreen(props) {
     const info= infos.find(item=>item._id === id)
     console.log(info)
     const clickHandler=()=>{
-        console.log(props)
         props.history.push(`/`)
     }
     return (
