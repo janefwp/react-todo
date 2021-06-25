@@ -8,7 +8,6 @@ function Header() {
 
     const { t, i18n } = useTranslation();
     const {userInfo, userLogout} = useContext(InfosContext)
-    console.log(userInfo)
     const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     };

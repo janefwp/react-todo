@@ -35,15 +35,15 @@ function InfoTable(props){
     
     const deleteInfoHandler=(id)=>{    
         dispatch(delInfoAction(id,userInfo))
-        setCheckNum(pre=>pre-1)
+        // setCheckNum(pre=>pre-1)
         toast('Successfully deleted one todo task')
     }
-    const checkedItemHandler=(event)=>{
-        var isChecked=event.target.checked;  
+    // const checkedItemHandler=(event)=>{
+    //     var isChecked=event.target.checked;  
    
-        setSelectedChecked(!selectedChecked)
+    //     setSelectedChecked(!selectedChecked)
 
-    }
+    // }
     // const selectAllHandler=(event)=>{
 
     //     var isChecked=event.target.checked
@@ -95,7 +95,7 @@ function InfoTable(props){
             </thead>
             <tbody>
                 {infos?.map(item=>(   
-                    <Infolist key={item._id} item={item} onChange={checkedItemHandler} onClick={() => deleteInfoHandler(item._id)}/>
+                    <Infolist key={item._id} item={item} onClick={() => deleteInfoHandler(item._id)}/>
                                           
                 ))}
             </tbody>

@@ -14,18 +14,14 @@ function LoginScreen({location,history}) {
         
         e.preventDefault()
         userLogin(email,password)
-    
-        // setLoading(true)
-
     }
     
     useEffect(() => {
-        if(loginLoading)
+        if(userInfo)
         {
             history.push('/')
-        }
-        
-    }, [userInfo])
+        }    
+    },[userInfo])
 
     return (
 

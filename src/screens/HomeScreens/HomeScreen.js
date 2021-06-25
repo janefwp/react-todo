@@ -8,7 +8,7 @@ function HomeScreen({history}) {
     const {userInfo}=useContext(InfosContext)
     
     useEffect(() => {
-       if(!userInfo){
+       if(userInfo==null){
            history.push('/login')
        } 
      
