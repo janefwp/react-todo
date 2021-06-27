@@ -4,17 +4,19 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
-// import { Provider } from 'react-redux'
-
-// import store from './redux/store'
+import { Provider } from 'react-redux'
+import {InfosProvider} from './context/InfosContext'
+import store from './redux/store'
 
 ReactDOM.render(
-  // <Provider store={store} >
-  //   <App />
-  // </Provider>,
-  <React.StrictMode>
+  <Provider store={store} >
+      <InfosProvider >
     <App />
-  </React.StrictMode>,
+    </InfosProvider>
+  </Provider>,
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

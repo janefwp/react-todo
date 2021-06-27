@@ -1,37 +1,84 @@
-import {ADD_INFO_ITEM, DEL_INFO_ITEM, CHANGE_CHECKED_STATUS, CHANGE_ALL_CHECKED_STATUS, DEL_SELECTED_ITEM} from './constants'
+import {
+    ADD_INFO_SUCCESS, 
+    ADD_INFO_REQUEST,
+    ADD_INFO_FAIL, 
+    LIST_INFO_FAIL,
+    LIST_INFO_REQUEST,
+    LIST_INFO_SUCCESS,
+    DEL_INFO_BYID_FAIL,
+    DEL_INFO_BYID_REQUEST,
+    DEL_INFO_BYID_SUCCESS,
+    UPDATE_INFO_BYID_FAIL,
+    UPDATE_INFO_BYID_REQUEST,
+    UPDATE_INFO_BYID_SUCCESS,
+} from './constants'
 
 const initialState={
     infos:[],
 }
-export const infoReducer=(state = initialState, action)=>{
-    console.log(action.payload)
+
+export const infoListReducer=(state=initialState,action)=>{
     switch (action.type){
-        case ADD_INFO_ITEM: 
-            action.payload.id= state.infos.length+1
+        case LIST_INFO_REQUEST:
+            return {loading:true}
+        case LIST_INFO_SUCCESS:
             return {
-                infos: [...state.infos,action.payload],
+                loading:false, 
+                infos: action.payload, 
             }
-        
-
-        case DEL_INFO_ITEM:
-            return {
-                infos: state.infos.filter(item=>(item.id !== action.payload))
-            }
-        
-        case DEL_SELECTED_ITEM:
-            return {
-                infos: state.infos.filter(item=>item.isChecked===false)
-            }
-
-        case CHANGE_CHECKED_STATUS:
-            const info= state.infos.find(item=>item.id===action.payload.id)
-            info.isChecked= action.payload.isChecked
-            return state;
-        case CHANGE_ALL_CHECKED_STATUS:
-            state.infos.map(item=>(item.isChecked=action.payload))
-            return state;
+        case LIST_INFO_FAIL:
+            return { loading: false, error: action.payload }
         default:
             return state;
-    }
-
+        }
 }
+
+export const infoAddReducer=(state=initialState,action)=>{
+    switch (action.type){
+        case ADD_INFO_REQUEST:
+            return {loading:true}
+        case ADD_INFO_SUCCESS:
+            return {
+                loading:false, 
+                success:true,
+                infos: action.payload, 
+            }
+        case ADD_INFO_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+        }
+}
+
+export const infoDelReducer=(state=initialState,action)=>{
+    switch (action.type){
+        case DEL_INFO_BYID_REQUEST:
+            return {loading:true}
+        case DEL_INFO_BYID_SUCCESS:
+            return {
+                loading:false, 
+                success:true,
+            }
+        case DEL_INFO_BYID_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+        }
+}
+
+export const infoUpdateReducer=(state=initialState,action)=>{
+    switch (action.type){
+        case UPDATE_INFO_BYID_REQUEST:
+            return {loading:true}
+        case UPDATE_INFO_BYID_SUCCESS:
+            return {
+                loading:false, 
+                success:true,
+            }
+        case UPDATE_INFO_BYID_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+        }
+}
+
