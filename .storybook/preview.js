@@ -3,6 +3,10 @@ import { Provider } from 'react-redux'
 import {InfosProvider} from '../src/context/InfosContext'
 import store from '../src/redux/store'
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import './bootstrap.min.css';
+
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
