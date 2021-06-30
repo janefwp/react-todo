@@ -4,7 +4,11 @@ import axios from 'axios'
 const InfosContext=createContext()
 
 function InfosProvider({children}) {
-    const [userInfo,setUserInfo]=useState(null)
+    
+    const userInfoFromStorage = localStorage.getItem('userInfo') ?
+    JSON.parse(localStorage.getItem('userInfo')) : null
+
+    const [userInfo,setUserInfo]=useState(userInfoFromStorage)
     const [loginLoading, setLoginLoading]=useState(false)
     const [loginError,setLoginError]=useState('')
     const [registerLoading, setRegisterLoading]=useState(false)
@@ -26,6 +30,7 @@ function InfosProvider({children}) {
                 config
                 ) 
                 setUserInfo(data)
+                localStorage.setItem('userInfo', JSON.stringify(data));
                 setLoginLoading(false)    
                 toast("Login successfully")
              
@@ -37,6 +42,7 @@ function InfosProvider({children}) {
     }
     const userLogout=()=>{
         setUserInfo(null)
+        localStorage.removeItem('userInfo')
         
     }
 
@@ -52,6 +58,8 @@ function InfosProvider({children}) {
                 {"name":user.name,"email":user.email,"password":user.password,"age":user.age},
                 config
             )
+            setUserInfo(data)
+            localStorage.setItem('userInfo', JSON.stringify(data));
             setRegisterLoading(false)    
             toast("Register successfully")
         }
