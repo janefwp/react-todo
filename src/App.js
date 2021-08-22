@@ -2,7 +2,7 @@ import React, {Suspense} from 'react'
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import HomeScreen from './screens/homescreens/HomeScreen';
+import HomeScreen from './screens/homescreens/HomeScreen'
 import AboutScreen from './screens/aboutscreens/AboutScreen'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
